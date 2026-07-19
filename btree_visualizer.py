@@ -11,6 +11,14 @@ import random
 import math
 import threading
 from collections import deque
+import sys, os
+
+def get_resource_path(filename: str) -> str:
+    if hasattr(sys, "_MEIPASS"):
+        base_dir = sys._MEIPASS
+    else:
+        base_dir = os.path.abspath(".")
+    return os.path.join(base_dir, filename)
 
 # 全局中文设置
 plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei"]
@@ -2352,7 +2360,8 @@ class BTreeVisualizer:
     # ---------- 源码/帮助弹窗 ----------
     def _usehelp(self):
         try:
-            with open("usehelp.txt", "r", encoding="utf-8") as f:
+            file_path = get_resource_path("usehelp.txt")
+            with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
             win = tk.Toplevel(self.root)
             win.title("使用帮助")
@@ -2366,7 +2375,8 @@ class BTreeVisualizer:
 
     def _btree(self):
         try:
-            with open("btree.cpp", "r", encoding="utf-8") as f:
+            file_path = get_resource_path("btree.cpp")
+            with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
             win = tk.Toplevel(self.root)
             win.title("B-Tree C++ 源代码")
@@ -2380,7 +2390,8 @@ class BTreeVisualizer:
 
     def _bplustree(self):
         try:
-            with open("bplustree.cpp", "r", encoding="utf-8") as f:
+            file_path = get_resource_path("bplustree.cpp")
+            with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
             win = tk.Toplevel(self.root)
             win.title("B+ Tree C++ 源代码")
@@ -2394,7 +2405,8 @@ class BTreeVisualizer:
 
     def _bstartree(self):
         try:
-            with open("bstartree.cpp", "r", encoding="utf-8") as f:
+            file_path = get_resource_path("bstartree.cpp")
+            with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
             win = tk.Toplevel(self.root)
             win.title("B* Tree C++ 源代码")
