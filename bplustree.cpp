@@ -86,7 +86,6 @@ public:
     void insert(int key) {
         BPlusNode* cur = root;
         vector<pair<BPlusNode*, int>> stack;
-        // 修复：向下寻叶匹配规则
         while (!cur->leaf) {
             int i = 0;
             while ((size_t)i < cur->keys.size() && key >= cur->keys[i]) {
